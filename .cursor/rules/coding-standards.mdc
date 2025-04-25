@@ -1,0 +1,64 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Coding Standards
+
+## Package Structure
+- Follow domain-driven design package structure
+- Use feature-based package organization
+- Keep related classes together in the same package
+
+## Naming Conventions
+- Use clear, descriptive names that reflect the purpose
+- Follow Java naming conventions:
+  - Classes: PascalCase (e.g., `OrderService`)
+  - Methods/Variables: camelCase (e.g., `createOrder`)
+  - Constants: UPPER_SNAKE_CASE (e.g., `MAX_RETRY_COUNT`)
+- Suffix conventions:
+  - Interfaces: No specific suffix (e.g., `OrderRepository`)
+  - Implementations: Impl suffix (e.g., `OrderRepositoryImpl`)
+  - DTOs: DTO suffix (e.g., `OrderDTO`)
+  - Factories: Factory suffix (e.g., `OrderFactory`)
+
+## Code Organization
+- One class per file
+- Maximum file length: 500 lines
+- Maximum method length: 30 lines
+- Maximum line length: 120 characters
+
+## Domain-Driven Design Patterns
+- Use Aggregates for consistency boundaries
+- Implement Value Objects for immutable concepts
+- Use Factories for complex object creation
+- Implement Repository pattern for persistence
+- Use Domain Events for cross-boundary communication
+
+## Error Handling
+- Use domain-specific exceptions
+- Avoid returning null, use Optional
+- Handle exceptions at appropriate levels
+- Document exceptional cases
+
+## Testing
+- Write unit tests for all business logic
+- Use meaningful test names that describe the scenario
+- Follow AAA pattern (Arrange-Act-Assert)
+- Mock external dependencies
+- Aim for high test coverage in domain layer
+
+## Documentation
+- Document public APIs
+- Include purpose and usage examples
+- Document non-obvious implementation details
+- Keep documentation up-to-date with code changes
+
+## Best Practices
+- Follow SOLID principles
+- Keep methods small and focused
+- Avoid duplicate code
+- Use dependency injection
+- Make dependencies explicit
+- Use immutable objects where possible
+- Validate input parameters

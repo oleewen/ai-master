@@ -1,0 +1,92 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Architecture Guidelines
+
+## Domain-Driven Design Architecture
+
+### Layered Architecture
+1. Interface Layer (API & Web)
+   - [OrderController.java](mdc:cursor-master-service/src/main/java/com/cursor/master/order/service/web/controller/OrderController.java)
+   - [OrderService.java](mdc:cursor-master-api/src/main/java/com/cursor/master/order/api/OrderService.java)
+
+2. Application Layer
+   - [OrderApplicationService.java](mdc:cursor-master-application/src/main/java/com/cursor/master/order/application/service/OrderApplicationService.java)
+   - Commands and Queries
+   - Use Cases and Actions
+
+3. Domain Layer
+   - [Order.java](mdc:cursor-master-domain/src/main/java/com/cursor/master/order/domain/model/Order.java)
+   - Domain Models and Business Logic
+   - Domain Services and Events
+
+4. Infrastructure Layer
+   - [OrderDao.java](mdc:cursor-master-infrastructure/src/main/java/com/cursor/master/order.infrastructure/dao/OrderDao.java)
+   - Repository Implementations
+   - External Service Integrations
+
+### Key Architectural Principles
+
+1. Dependencies
+   - Dependencies flow inward
+   - Domain layer has no external dependencies
+   - Each layer depends only on the layer below it
+
+2. Bounded Contexts
+   - Order Context
+   - Goods Context
+   - Inventory Context
+   - User Context
+
+3. Communication
+   - Use Domain Events for cross-context communication
+   - Implement Anti-Corruption Layer when needed
+   - Use Facades for context boundaries
+
+## Technical Architecture
+
+### Database
+- Use MyBatis for persistence
+- Follow repository pattern
+- Implement optimistic locking
+- Use database transactions appropriately
+
+### API Design
+- RESTful principles
+- Version APIs
+- Use DTOs for data transfer
+- Implement proper error handling
+- Follow API documentation standards
+
+### Security
+- Implement authentication
+- Use proper authorization
+- Secure sensitive data
+- Follow security best practices
+
+### Performance
+- Use caching where appropriate
+- Implement pagination
+- Optimize database queries
+- Monitor performance metrics
+
+### Scalability
+- Design for horizontal scaling
+- Use stateless services
+- Implement proper caching strategies
+- Consider eventual consistency
+
+### Monitoring and Logging
+- Implement comprehensive logging
+- Use proper log levels
+- Include correlation IDs
+- Monitor key metrics
+
+## Development Workflow
+- Use feature branches
+- Follow Git workflow
+- Implement CI/CD
+- Conduct code reviews
+- Run automated tests

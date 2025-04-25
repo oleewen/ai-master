@@ -1,0 +1,72 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Project Structure Guide
+
+This is a multi-module Maven project following DDD (Domain-Driven Design) principles. The project is organized into the following modules:
+
+## Core Modules
+
+### API Module
+[cursor-master-api/pom.xml](mdc:cursor-master-api/pom.xml)
+- Contains service interfaces and DTOs
+- Defines the public API contract
+- Located in `com.cursor.master.order.api`
+
+### Domain Module
+[cursor-master-domain/pom.xml](mdc:cursor-master-domain/pom.xml)
+- Core domain models and business logic
+- Implements DDD patterns
+- Contains aggregates, entities, value objects
+- Organized by bounded contexts:
+  - Order
+  - Goods
+  - Inventory
+  - User
+
+### Application Module
+[cursor-master-application/pom.xml](mdc:cursor-master-application/pom.xml)
+- Application services and use cases
+- Orchestrates domain logic
+- Contains commands, queries, and actions
+- Located in `com.cursor.master.order.application`
+
+## Supporting Modules
+
+### Infrastructure Module
+[cursor-master-infrastructure/pom.xml](mdc:cursor-master-infrastructure/pom.xml)
+- Technical implementations
+- Database access
+- External service integrations
+- Repository implementations
+
+### Service Module
+[cursor-master-service/pom.xml](mdc:cursor-master-service/pom.xml)
+- Web controllers
+- RPC service implementations
+- API endpoints
+- Configuration
+
+### Boot Module
+[cursor-master-boot/pom.xml](mdc:cursor-master-boot/pom.xml)
+- Application entry point
+- Spring Boot configuration
+- Main application class
+
+### Common Module
+[cursor-master-common/pom.xml](mdc:cursor-master-common/pom.xml)
+- Shared utilities
+- Common components
+- Base classes
+
+### Client Module
+[cursor-master-client/pom.xml](mdc:cursor-master-client/pom.xml)
+- Client SDK
+- API client implementations
+
+## Key Entry Points
+- Main Application: [ApplicationStarter.java](mdc:cursor-master-boot/src/main/java/com/cursor/master/boot/ApplicationStarter.java)
+- Web Controller: [OrderController.java](mdc:cursor-master-service/src/main/java/com/cursor/master/order/service/web/controller/OrderController.java)
+- Domain Service: [OrderDomainService.java](mdc:cursor-master-domain/src/main/java/com/cursor/master/order/domain/service/OrderDomainService.java)

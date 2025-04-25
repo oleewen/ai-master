@@ -3,62 +3,62 @@ description:
 globs:
 alwaysApply: false
 ---
-# Coding Standards
+# 编码规范
 
-## Package Structure
-- Follow domain-driven design package structure
-- Use feature-based package organization
-- Keep related classes together in the same package
+## 包结构
+- 遵循领域驱动设计的包结构
+- 使用基于功能的包组织方式
+- 相关类保持在同一个包中
 
-## Naming Conventions
-- Use clear, descriptive names that reflect the purpose
-- Follow Java naming conventions:
-  - Classes: PascalCase (e.g., `OrderService`)
-  - Methods/Variables: camelCase (e.g., `createOrder`)
-  - Constants: UPPER_SNAKE_CASE (e.g., `MAX_RETRY_COUNT`)
-- Suffix conventions:
-  - Interfaces: No specific suffix (e.g., `OrderRepository`)
-  - Implementations: Impl suffix (e.g., `OrderRepositoryImpl`)
-  - DTOs: DTO suffix (e.g., `OrderDTO`)
-  - Factories: Factory suffix (e.g., `OrderFactory`)
+## 命名规范
+- 使用清晰、描述性的名称，反映其用途
+- 遵循Java命名约定：
+  - 类名：大驼峰式（如 `OrderService`）
+  - 方法/变量：小驼峰式（如 `createOrder`）
+  - 常量：大写下划线（如 `MAX_RETRY_COUNT`）
+- 后缀约定：
+  - 接口：无特定后缀（如 `OrderRepository`）
+  - 实现类：使用Impl后缀（如 `OrderRepositoryImpl`）
+  - 数据传输对象：使用DTO后缀（如 `OrderDTO`）
+  - 工厂类：使用Factory后缀（如 `OrderFactory`）
 
-## Code Organization
-- One class per file
-- Maximum file length: 500 lines
-- Maximum method length: 30 lines
-- Maximum line length: 120 characters
+## 代码组织
+- 一个文件只包含一个类
+- 文件最大长度：500行
+- 方法最大长度：30行
+- 行最大长度：120字符
 
-## Domain-Driven Design Patterns
-- Use Aggregates for consistency boundaries
-- Implement Value Objects for immutable concepts
-- Use Factories for complex object creation
-- Implement Repository pattern for persistence
-- Use Domain Events for cross-boundary communication
+## 领域驱动设计模式
+- 使用聚合来维护一致性边界
+- 实现值对象表示不可变概念
+- 使用工厂模式创建复杂对象
+- 实现仓储模式进行持久化
+- 使用领域事件进行跨边界通信
 
-## Error Handling
-- Use domain-specific exceptions
-- Avoid returning null, use Optional
-- Handle exceptions at appropriate levels
-- Document exceptional cases
+## 错误处理
+- 使用领域特定的异常
+- 避免返回null，使用Optional
+- 在适当的层级处理异常
+- 文档化异常情况
 
-## Testing
-- Write unit tests for all business logic
-- Use meaningful test names that describe the scenario
-- Follow AAA pattern (Arrange-Act-Assert)
-- Mock external dependencies
-- Aim for high test coverage in domain layer
+## 测试
+- 为所有业务逻辑编写单元测试
+- 使用有意义的测试名称描述场景
+- 遵循AAA模式（准备-执行-断言）
+- 模拟外部依赖
+- 确保领域层有高测试覆盖率
 
-## Documentation
-- Document public APIs
-- Include purpose and usage examples
-- Document non-obvious implementation details
-- Keep documentation up-to-date with code changes
+## 文档
+- 为公共API编写文档
+- 包含用途和使用示例
+- 记录非显而易见的实现细节
+- 保持文档与代码同步更新
 
-## Best Practices
-- Follow SOLID principles
-- Keep methods small and focused
-- Avoid duplicate code
-- Use dependency injection
-- Make dependencies explicit
-- Use immutable objects where possible
-- Validate input parameters
+## 最佳实践
+- 遵循SOLID原则
+- 保持方法小而专注
+- 避免代码重复
+- 使用依赖注入
+- 明确声明依赖关系
+- 尽可能使用不可变对象
+- 验证输入参数

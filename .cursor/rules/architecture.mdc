@@ -1,92 +1,92 @@
 ---
-description:
-globs:
+description: 
+globs: 
 alwaysApply: false
 ---
-# Architecture Guidelines
+# 架构指南
 
-## Domain-Driven Design Architecture
+## 领域驱动设计架构
 
-### Layered Architecture
-1. Interface Layer (API & Web)
+### 分层架构
+1. 接口层（API和Web）
    - [OrderController.java](mdc:cursor-master-service/src/main/java/com/cursor/master/order/service/web/controller/OrderController.java)
    - [OrderService.java](mdc:cursor-master-api/src/main/java/com/cursor/master/order/api/OrderService.java)
 
-2. Application Layer
+2. 应用层
    - [OrderApplicationService.java](mdc:cursor-master-application/src/main/java/com/cursor/master/order/application/service/OrderApplicationService.java)
-   - Commands and Queries
-   - Use Cases and Actions
+   - 命令和查询
+   - 用例和操作
 
-3. Domain Layer
+3. 领域层
    - [Order.java](mdc:cursor-master-domain/src/main/java/com/cursor/master/order/domain/model/Order.java)
-   - Domain Models and Business Logic
-   - Domain Services and Events
+   - 领域模型和业务逻辑
+   - 领域服务和事件
 
-4. Infrastructure Layer
+4. 基础设施层
    - [OrderDao.java](mdc:cursor-master-infrastructure/src/main/java/com/cursor/master/order.infrastructure/dao/OrderDao.java)
-   - Repository Implementations
-   - External Service Integrations
+   - 仓储实现
+   - 外部服务集成
 
-### Key Architectural Principles
+### 核心架构原则
 
-1. Dependencies
-   - Dependencies flow inward
-   - Domain layer has no external dependencies
-   - Each layer depends only on the layer below it
+1. 依赖关系
+   - 依赖关系向内流动
+   - 领域层没有外部依赖
+   - 每一层只依赖其下层
 
-2. Bounded Contexts
-   - Order Context
-   - Goods Context
-   - Inventory Context
-   - User Context
+2. 限界上下文
+   - 订单上下文
+   - 商品上下文
+   - 库存上下文
+   - 用户上下文
 
-3. Communication
-   - Use Domain Events for cross-context communication
-   - Implement Anti-Corruption Layer when needed
-   - Use Facades for context boundaries
+3. 通信方式
+   - 使用领域事件进行跨上下文通信
+   - 必要时实现防腐层
+   - 使用门面模式处理上下文边界
 
-## Technical Architecture
+## 技术架构
 
-### Database
-- Use MyBatis for persistence
-- Follow repository pattern
-- Implement optimistic locking
-- Use database transactions appropriately
+### 数据库
+- 使用MyBatis进行持久化
+- 遵循仓储模式
+- 实现乐观锁
+- 合理使用数据库事务
 
-### API Design
-- RESTful principles
-- Version APIs
-- Use DTOs for data transfer
-- Implement proper error handling
-- Follow API documentation standards
+### API设计
+- 遵循RESTful原则
+- 版本化API
+- 使用DTO进行数据传输
+- 实现合适的错误处理
+- 遵循API文档标准
 
-### Security
-- Implement authentication
-- Use proper authorization
-- Secure sensitive data
-- Follow security best practices
+### 安全性
+- 实现身份认证
+- 使用适当的授权机制
+- 保护敏感数据
+- 遵循安全最佳实践
 
-### Performance
-- Use caching where appropriate
-- Implement pagination
-- Optimize database queries
-- Monitor performance metrics
+### 性能
+- 合理使用缓存
+- 实现分页
+- 优化数据库查询
+- 监控性能指标
 
-### Scalability
-- Design for horizontal scaling
-- Use stateless services
-- Implement proper caching strategies
-- Consider eventual consistency
+### 可扩展性
+- 设计支持水平扩展
+- 使用无状态服务
+- 实现合适的缓存策略
+- 考虑最终一致性
 
-### Monitoring and Logging
-- Implement comprehensive logging
-- Use proper log levels
-- Include correlation IDs
-- Monitor key metrics
+### 监控和日志
+- 实现全面的日志记录
+- 使用合适的日志级别
+- 包含关联ID
+- 监控关键指标
 
-## Development Workflow
-- Use feature branches
-- Follow Git workflow
-- Implement CI/CD
-- Conduct code reviews
-- Run automated tests
+## 开发工作流
+- 使用功能分支
+- 遵循Git工作流
+- 实现持续集成/持续部署
+- 进行代码审查
+- 运行自动化测试

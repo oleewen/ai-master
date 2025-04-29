@@ -1,125 +1,67 @@
-# 工程结构介绍
+# Cursor Master 项目规范指南
 
-## 模块依赖关系
+本目录包含Cursor Master项目的所有开发规范和指南文档。这些规范旨在确保项目的一致性、可维护性和开发效率。
 
-    --------------              --------------                               ---------------
-    |            |              |            |                               |             |
-    |   client   |              |  service   | /_ __ __ __ __ __ __ __ __ __ |    boot     | 
-    |            |              |            | \                             |             |                                                    
-    --------------              --------------                               ---------------                                                    
-                \                 /        \                                        \               
-                 \               /          \                                        \              
-                  \             /            \                                        \             
-                  _\|         |/_            _\|                                      _\|           
-                  --------------               ---------------               --------------------   
-                  |            |               |             |               |                  |   
-                  |     api    |               | application |               |  infrastructure  |   
-                  |            |               |             |               |                  |   
-                  --------------               ---------------               --------------------   
-                                                             \                  /                   
-                                                              \                /                    
-                                                               \              /                     
-                                                               _\|          |/_                     
-                                                                --------------                      
-                                                                |            |                      
-                                                                |   domain   | 
-                                                                |            |
-                                                                --------------
+## 规范文件说明
 
-## 常见架构模式
-![六边形](六边形架构.png)
+### 1. 架构规范 (structure-guidelines.md)
+- 系统整体架构设计
+- 模块划分和职责
+- 依赖关系管理
+- 设计规范
+- 通信规范
+- 部署架构
 
-![洋葱](洋葱架构.png)
+### 2. Java开发规范 (java-code-guidelines.md)
+- 代码风格
+- 命名规范
+- 注释规范
+- 异常处理
+- 日志规范
+- 单元测试
+- 性能优化
+- DDD实现规范
 
-![整洁](整洁架构.png)
+### 3. Maven规范 (maven-guidelines.md)
+- 项目结构
+- 依赖管理
+- 构建配置
+- 多环境配置
+- 构建生命周期
+- 最佳实践
 
-## 设计规范
-- ![API设计参考规范](api.md)
-## 各个模块职责
+### 4. Git使用规范 (git-commit-guidelines.md)
+- 分支管理
+- 提交信息规范
+- 代码评审流程
+- 版本管理
+- 发布流程
 
-- domain：领域服务层
-    - 领域模型层：领域对象model、领域服务service、资源库repository、事件event、查询门面facade
-    - 代码结构如下
-    ```
-    - com.${company}.${businessdomain}.${context}
-      \- domain
-      |- service
-      |- facade
-      |- model
-      |- event
-      \- repository
-    ```
-- application：应用服务层
-    - 面向用例或用户故事，实现处理流程（service）、处理节点（action）
-    - 代码结构如下
-    ```
-    - com.${company}.${businessdomain}.${context}
-      \- application
-        |- service
-        |- action
-        |- command
-        |- query
-        \- result
-    ```
-- infrastructure：资源层，实现数据访问
-    - 含数据访问对象dao、数据库配置config、数据对象entity、数据映射mapper、数据对象&领域对象工厂
-    - 代码结构如下
-    ```
-    - com.${company}.${businessdomain}.${context}
-      \- infrastructure
-        |- dao
-        |- config
-        |- entity
-        |- mapper
-        |- message
-        |- dal
-        |- call
-        \- factory
-   ```
-- api：公共api包，含公共常量&通用定义，服务接口定义
-    - RPC服务接口定义Service（api领域开放接口，service领域封闭接口，open开放接口）
-    - 输入输出对象：Request、Response、DTO
-    - 开放的常量const、枚举enum、通用util类、异常类
-    - 代码结构如下
-    ```java
-    - com.${company}.${businessdomain}.${context}
-      |- common
-      | |- consts
-      | |- enums
-      | \- exception
-    - com.${company}.${businessdomain}.${context}
-      \- api|service|open
-        |- module
-        | |- request
-        | |- response
-        | \- dto
-        \- ${Aggregate}Service
-      ```
-- client：实现富客户端
-    - 富客户端
-    - 代码结构如下
-    ```
-    - com.${company}.${businessdomain}.${context}
-      \- ${Aggregate}Client
-    ```
-- service：用户接口层，即表现层，实现表现层逻辑（协议、输入&输出转换）
-    - 定义service层接口（HTTP协议）和实现（RPC协议）
-    - 代码结构如下
-    ```
-    - com.${company}.${businessdomain}.${context}
-        |- message
-        | |- consumer  
-        | \- listener
-        |- job
-        | |- task
-        | \- handle|- service
-        |- rpc
-        | \- ${Aggregate}ServiveImpl
-        \- web
-          |- controller
-          |  \- ${Aggregate}Controller
-          |- request
-          |- response
-          |- config
-          \- filter    
-    ```
+### 5. 文档规范 (documentation-guidelines.md)
+- 代码文档规范
+- 项目文档规范
+- API文档规范
+- 版本文档规范
+- 运维文档规范
+
+## 规范使用指南
+
+1. 所有团队成员必须熟悉并遵循这些规范
+2. 在开始开发之前，请仔细阅读相关规范
+3. 代码评审时将依据这些规范进行检查
+4. 规范文件会随项目发展持续更新
+5. 如有规范问题，请通过Issue讨论
+
+## 规范更新流程
+
+1. 提出规范更新建议
+2. 团队讨论并达成一致
+3. 提交Pull Request更新规范
+4. 评审通过后合并
+5. 通知团队成员关注更新
+
+## 联系方式
+
+如有问题或建议，请联系：
+- 技术负责人：[姓名]
+- 邮箱：[邮箱地址] 

@@ -31,8 +31,6 @@ public class Order {
     private OrderAmount amount;
     /** 订单状态 */
     private OrderState state;
-    /** 版本号，用于乐观锁控制 */
-    private Long version;
 
     public Order() {
         this.orderId = OrderId.create();
@@ -89,12 +87,6 @@ public class Order {
      */
     public synchronized OrderState doAction(OrderAction action) {
         this.state = this.state.onAction(action);
-        this.version++;
         return this.state;
     }
-
-    public Long getVersion() {
-        return version;
-    }
-
 }

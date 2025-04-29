@@ -3,94 +3,43 @@
 ## 1. 整体架构
 
 ### 1.1 架构层次
-本项目采用DDD（领域驱动设计）架构，遵循六边形架构（Hexagonal Architecture）原则，将系统分为以下主要层次：
+本项目采用DDD（领域驱动设计）架构，结合六边形架构（Hexagonal Architecture）原则，将系统分为以下标准层次：
 
-#### 核心层
-- **Domain Layer**: 包含核心业务逻辑和领域模型
-- **Application Layer**: 协调领域对象完成用户用例
+#### 核心层（Core Layers）
+- **Domain Layer**: 领域核心层，包含领域模型、领域服务和领域事件
+- **Application Layer**: 应用层，协调领域对象，实现用例流程
 
-#### 适配层
-- **Infrastructure Layer**: 实现技术细节和外部服务集成
-- **Interface Layer**: 处理外部请求和响应
+#### 适配层（Adapter Layers）
+- **Infrastructure Layer**: 基础设施层，实现技术细节和外部服务集成
+- **Interface Layer (Service)**: 接口适配层，处理外部请求和响应
 
-#### 通信层
-- **API Layer**: 定义外部服务接口
-- **Client Layer**: 提供服务调用客户端
+#### 通信层（Communication Layers）
+- **API Layer**: 接口定义层，定义外部服务契约
+- **Client Layer**: 客户端层，提供服务调用适配
+
+#### 启动层（Bootstrap Layer）
+- **Boot Layer**: 应用启动层，负责组装和配置
 
 ### 1.2 架构原则
-- 关注点分离
-- 依赖倒置
-- 领域驱动设计
-- 端口和适配器模式
-- 可测试性设计
-- 允许领域层使用通用组件
-- 服务层轻量化设计
-- 灵活的启动配置
+- 领域驱动设计（DDD）原则
+  * 领域模型是核心
+  * 领域逻辑内聚
+  * 限界上下文清晰
+  
+- 六边形架构原则
+  * 内外边界分明
+  * 依赖指向内部
+  * 关注点分离
+  * 可测试性设计
 
-## 2. 模块划分
+- 模块依赖原则
+  * 显式依赖原则
+  * 稳定依赖原则
+  * 抽象依赖原则
 
-### 2.1 核心模块
-- **cursor-master-domain**
-  - 领域模型
-  - 领域服务
-  - 领域事件
-  - 仓储接口
-  - 领域规则
+## 2. 标准依赖关系
 
-### 2.2 应用模块
-- **cursor-master-application**
-  - 应用服务
-  - 命令处理
-  - 查询处理
-  - 事件处理
-  - 事务管理
-
-### 2.3 基础设施模块
-- **cursor-master-infrastructure**
-  - 数据库访问实现
-  - 缓存实现
-  - 消息队列实现
-  - 第三方服务集成
-  - 技术组件
-
-### 2.4 接口模块
-- **cursor-master-api**
-  - 接口定义
-  - DTO对象
-  - 接口文档
-  - 版本控制
-
-### 2.5 启动模块
-- **cursor-master-boot**
-  - 应用配置
-  - 依赖注入
-  - 启动类
-  - 环境配置
-
-### 2.6 客户端模块
-- **cursor-master-client**
-  - RPC客户端
-  - HTTP客户端
-  - 客户端配置
-  - 服务发现
-
-### 2.7 公共模块
-- **cursor-master-common**
-  - 工具类
-  - 通用组件
-  - 常量定义
-  - 共享模型
-
-### 2.8 服务模块
-- **cursor-master-service**
-  - 服务实现
-  - 控制器
-  - 服务配置
-  - 服务注册
-
-## 3. 依赖关系
-
-### 3.1 模块依赖
+### 2.1 模块依赖图
 ```
 cursor-master-boot
     ├── cursor-master-service
@@ -108,19 +57,120 @@ cursor-master-infrastructure
 
 cursor-master-client
     └── cursor-master-api
-
-cursor-master-api
-    └── cursor-master-common
-
-cursor-master-domain
-    └── cursor-master-common
 ```
 
-### 3.2 依赖原则
-1. 领域层（Domain）可以依赖通用模块（Common）
-2. 应用层（Application）依赖领域层和基础设施层
-3. 服务层（Service）不直接依赖基础设施层
-4. 启动模块（Boot）可以依赖基础设施层和服务层
+### 2.2 依赖规则
+1. Domain Layer（领域核心层）
+   - 不依赖任何其他层
+   - 包含领域模型和业务规则
+   - 定义领域接口和事件
+
+2. Application Layer（应用层）
+   - 仅依赖Domain Layer
+   - 实现应用用例和业务流程
+   - 编排领域对象
+
+3. Infrastructure Layer（基础设施层）
+   - 依赖Domain Layer
+   - 实现领域接口
+   - 提供技术实现
+
+4. Service Layer（接口适配层）
+   - 依赖Application Layer和API Layer
+   - 实现API契约
+   - 处理请求响应
+
+5. API Layer（接口定义层）
+   - 不依赖其他层
+   - 定义服务契约
+   - 声明DTO对象
+
+6. Client Layer（客户端层）
+   - 仅依赖API Layer
+   - 提供服务调用
+   - 处理远程通信
+
+7. Boot Layer（启动层）
+   - 依赖Service Layer和Infrastructure Layer
+   - 装配应用组件
+   - 管理配置信息
+
+### 2.3 架构边界
+1. 内部边界（Inner Boundary）
+   - Domain Layer作为最内层
+   - 不依赖外部系统
+   - 纯业务规则实现
+
+2. 中间边界（Middle Boundary）
+   - Application Layer作为协调层
+   - Infrastructure Layer作为适配层
+   - 连接内外部系统
+
+3. 外部边界（Outer Boundary）
+   - Service Layer作为外部入口
+   - API Layer定义外部契约
+   - Client Layer适配外部调用
+
+## 3. 模块划分
+
+### 3.1 核心模块
+- **cursor-master-domain**
+  - 领域模型
+  - 领域服务
+  - 领域事件
+  - 仓储接口
+  - 领域规则
+
+### 3.2 应用模块
+- **cursor-master-application**
+  - 应用服务
+  - 命令处理
+  - 查询处理
+  - 事件处理
+  - 事务管理
+
+### 3.3 基础设施模块
+- **cursor-master-infrastructure**
+  - 数据库访问实现
+  - 缓存实现
+  - 消息队列实现
+  - 第三方服务集成
+  - 技术组件
+
+### 3.4 接口模块
+- **cursor-master-api**
+  - 接口定义
+  - DTO对象
+  - 接口文档
+  - 版本控制
+
+### 3.5 启动模块
+- **cursor-master-boot**
+  - 应用配置
+  - 依赖注入
+  - 启动类
+  - 环境配置
+
+### 3.6 客户端模块
+- **cursor-master-client**
+  - RPC客户端
+  - HTTP客户端
+  - 客户端配置
+  - 服务发现
+
+### 3.7 公共模块
+- **cursor-master-common**
+  - 工具类
+  - 通用组件
+  - 常量定义
+  - 共享模型
+
+### 3.8 服务模块
+- **cursor-master-service**
+  - 服务实现
+  - 控制器
+  - 服务配置
+  - 服务注册
 
 ## 4. 设计规范
 

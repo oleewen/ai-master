@@ -12,5 +12,5 @@ public interface ValueObject<T> {
      *
      * @return 值对象值
      */
-    T value();
+    T id();
 }

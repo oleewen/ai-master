@@ -1,5 +1,7 @@
 package com.cursor.master.order.domain.model;
 
+import java.util.UUID;
+
 import com.cursor.master.common.domain.Id;
 
 /**
@@ -13,7 +15,11 @@ public class OrderId extends Id {
         super(id);
     }
 
-    public static com.cursor.master.order.domain.model.OrderId create(Long id) {
-        return new com.cursor.master.order.domain.model.OrderId(id);
+    public static OrderId create() {
+        return new OrderId(UUID.randomUUID().getLeastSignificantBits());
+    }
+
+    public Long getId() {
+        return super.id();
     }
 }

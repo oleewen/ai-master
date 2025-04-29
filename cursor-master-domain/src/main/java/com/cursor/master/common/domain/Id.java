@@ -20,7 +20,7 @@ public abstract class Id implements ValueObject<Long> {
         this.id = id;
     }
 
-    public Long value() {
+    public Long id() {
         return id;
     }
 }

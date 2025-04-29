@@ -30,13 +30,18 @@ public class Order {
     /** 订单金额 */
     private OrderAmount amount;
     /** 订单状态 */
-    private OrderStatus status;
+    private OrderState state;
+
+    public Order() {
+        this.orderId = OrderId.create();
+        this.state = new OrderState(OrderStatus.CREATED);
+    }
 
     /**
      * 创建订单（工厂方法）
      * <pre>
      * 创建买家buyerId购买了count件商品goods的订单
-     * 默认订单状态为新创建
+     * 默认订单状态为已创建
      * </pre>
      *
      * @param buyerId   买家id
@@ -57,18 +62,19 @@ public class Order {
         // 计算原价
         MonetaryAmount amount = goods.calculateAmount(itemCount);
         order.amount = OrderAmount.create(amount);
-
-        order.status = OrderStatus.NEW;
-
         return order;
     }
 
+    public Long getId() {
+        return orderId.id();
+    }
 
-    public void enable() {
-        if (status == null) {
-            throw new IllegalStateException("status is null");
-        }
-        status = status.create();
+    public OrderState getState() {
+        return state;
+    }
+
+    public void doAction(OrderAction action) {
+        this.state = this.state.onAction(action);
     }
 
 }

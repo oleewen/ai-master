@@ -30,7 +30,7 @@ public class OrderAmount implements ValueObject<Long> {
     }
 
     @Override
-    public Long value() {
+    public Long id() {
         return amount.getCent();
     }
 }

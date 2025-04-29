@@ -31,10 +31,13 @@ public class Order {
     private OrderAmount amount;
     /** 订单状态 */
     private OrderState state;
+    /** 版本号，用于乐观锁控制 */
+    private Long version;
 
     public Order() {
         this.orderId = OrderId.create();
         this.state = new OrderState(OrderStatus.CREATED);
+        this.version = 0L;
     }
 
     /**
@@ -73,8 +76,25 @@ public class Order {
         return state;
     }
 
-    public void doAction(OrderAction action) {
+    /**
+     * 执行订单动作（状态流转）
+     * <pre>
+     * 1. synchronized保证同一订单并发动作的互斥
+     * 2. version用于乐观锁控制
+     * 3. 返回流转后的状态，便于外部判断是否变更成功
+     * </pre>
+     *
+     * @param action 订单动作
+     * @return 流转后的订单状态
+     */
+    public synchronized OrderState doAction(OrderAction action) {
         this.state = this.state.onAction(action);
+        this.version++;
+        return this.state;
+    }
+
+    public Long getVersion() {
+        return version;
     }
 
 }

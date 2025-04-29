@@ -25,12 +25,16 @@ public class OrderAmount implements ValueObject<Long> {
      * @param amount 金额
      * @return 订单金额
      */
-    public static com.cursor.master.order.domain.model.OrderAmount create(MonetaryAmount amount) {
-        return new com.cursor.master.order.domain.model.OrderAmount(amount);
+    public static OrderAmount create(MonetaryAmount amount) {
+        return new OrderAmount(amount);
     }
 
     @Override
     public Long id() {
+        return amount.getCent();
+    }
+
+    public Long getCent() {
         return amount.getCent();
     }
 }

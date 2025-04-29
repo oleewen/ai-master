@@ -14,4 +14,8 @@ public class OrderState {
         OrderStatus next = status.onAction(action);
         return new OrderState(next);
     }
+
+    public int status() {
+        return status.getStatus();
+    }
 } 

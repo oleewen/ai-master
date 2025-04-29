@@ -1,7 +1,6 @@
 package com.cursor.master.order.api;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import com.cursor.master.order.api.module.request.OrderBuyRequest;
 import com.cursor.master.order.api.module.response.OrderBuyResponse;
 

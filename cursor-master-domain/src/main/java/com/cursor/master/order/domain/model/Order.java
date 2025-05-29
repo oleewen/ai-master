@@ -35,7 +35,6 @@ public class Order {
     public Order() {
         this.orderId = OrderId.create();
         this.state = new OrderState(OrderStatus.CREATED);
-        this.version = 0L;
     }
 
     /**
@@ -88,5 +87,9 @@ public class Order {
     public synchronized OrderState doAction(OrderAction action) {
         this.state = this.state.onAction(action);
         return this.state;
+    }
+
+    public void enable() {
+        this.state = this.state.onAction(OrderAction.SUBMIT);
     }
 }

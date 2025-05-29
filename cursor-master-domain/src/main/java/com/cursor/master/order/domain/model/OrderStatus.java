@@ -44,7 +44,7 @@ public enum OrderStatus {
         ORDERED.addTransmit(OrderAction.PAY, PAID);
         ORDERED.addTransmit(OrderAction.CANCEL, CANCELLED);
 
-        PAID.addTransmit(OrderAction.SHIP, DELIVERIED);
+        PAID.addTransmit(OrderAction.DELIVERY, DELIVERIED);
 
         DELIVERIED.addTransmit(OrderAction.RECEIVE, RECEIVED);
         DELIVERIED.addTransmit(OrderAction.CANCEL, CANCELLED);

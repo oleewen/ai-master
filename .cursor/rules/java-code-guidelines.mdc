@@ -1,0 +1,19 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Java代码规范
+
+- 所有公共类、方法、接口必须有JavaDoc注释，包含参数、返回值、异常说明。
+- 类、方法、变量命名采用驼峰命名法，包名小写。
+- 每个包应有package-info.java说明用途。
+- 业务逻辑复杂处需有详细注释，算法实现需解释思路。
+- 禁止在生产代码中保留未完成的TODO，开发中TODO需注明责任人和优先级。
+- 统一使用UTF-8编码。
+- 代码风格遵循Google Java Style Guide。
+- 详见[documentation-guidelines.mdc](mdc:documentation-guidelines.mdc)
+- 所有规则文件必须存放于.cursor/rules目录，扩展名为.mdc。
+- 规则文件引用其他文件时，需使用[文件名](mdc:文件名)格式，路径相对工作区根目录。
+- 禁止修改规则文件的metadata部分，只能编辑内容部分。
+- 如需编辑规则文件，只能编辑内容部分，不能包含metadata。

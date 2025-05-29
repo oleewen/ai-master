@@ -1,0 +1,138 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description:设计规范和最佳实践
+globs:["'*.md"]
+alwaysApply:true
+---
+
+# 设计规范
+
+## 设计原则
+- 遵循SOLID原则
+- 优先考虑组合而非继承
+- 保持高内聚低耦合
+- 设计接口而非实现
+
+## 架构风格
+- 遵循领域驱动设计(DDD)
+- 采用整洁架构
+- 使用微服务架构
+- 区分命令与查询职责分离(CQRS)
+
+## 最佳实践
+- API设计遵循RESTful风格
+- 使用事件驱动架构处理异步业务场景
+- 遵循防御性编程原则
+- 设计易于测试的组件 
+
+
+# 详设文档模板
+
+## 一、业务分析
+### 1. 名词定义
+|名词|含义|举例|
+|-----|-----|------|
+| 名词1 | 名词含义 | 名词案例 |
+
+### 2. 业务流程
+- 用于描述业务主流程，建议使用mermaid流程图。
+```mermaid
+flowchart LR
+    S([流程开始]) --> A[业务节点A]
+    A --> B[业务节点B]
+    B --> E([流程结束])
+```
+> 简要说明：各节点可根据实际业务调整。
+
+### 3. 领域模型
+- 用于描述核心领域对象及关系。
+```mermaid
+erDiagram
+    RootEntity }|--|| SubEntityA : "关系A"
+    RootEntity ||--o{ SubEntityB : "关系B"
+```
+- RootEntity：聚合根，包含主要属性
+- SubEntityA/B：子对象，包含主要属性
+
+### 4. 能力定义
+|流程节点|归属系统|接口/Topic|
+|---|---|---|
+|节点A|系统A|/api/a|
+|节点B|系统B|/api/b|
+
+## 二、详细设计
+### 1. 容器架构
+#### 服务划分
+- 简要描述前后端、服务、数据库等分工。
+#### 外部依赖
+- 简要列举外部依赖（如文件存储、MQ、外部服务等）。
+#### 架构图
+```mermaid
+C4Container
+    Person(user, "用户")
+
+    Container_Boundary(c1, "xx系统") {
+        Container(app, "应用服务", "技术栈", "描述")
+        ContainerDb(db, "数据库", "类型", "描述")
+    }
+
+    Rel_D(user, app, "HTTP调用")
+    UpdateRelStyle(user, app, $offsetX="-30", $offsetY="0")
+    Rel_D(app, db, "数据存取")
+    UpdateRelStyle(app, db, $offsetX="-30", $offsetY="0")
+```
+
+### 2. API设计
+> 每个接口用表格描述，字段包括API签名、请求参数、响应结果、关键步骤（编号）、状态和异常、SLA协议。
+
+|API事项|具体说明|
+|----|----|
+|API签名|`/api/path`|
+|请求参数|`{"param":""}`|
+|响应结果|`{"result":""}`|
+|关键步骤|- 1.1.1 步骤一<br/>- 1.1.2 步骤二|
+|状态和异常|400、500|
+|SLA协议|99.95%成功率|
+
+### 3. 逻辑模型
+#### 关键类图
+```mermaid
+classDiagram
+    class RootEntity {
+        +property1
+        +property2
+    }
+```
+#### 状态流转
+```mermaid
+stateDiagram-v2
+    [*] --> 状态A
+    状态A --> 状态B
+```
+#### 处理时序
+- 用mermaid时序图描述典型交互。
+```mermaid
+sequenceDiagram
+    participant A
+    participant B
+    A->>B: 操作
+```
+
+### 4. 数据模型
+#### ER关系
+```mermaid
+erDiagram
+    TableA ||--o{ TableB : "1:N"
+```
+#### 表结构
+```sql
+-- 表结构示例
+CREATE TABLE `table_a` (
+    `id` bigint NOT NULL,
+    PRIMARY KEY (`id`)
+);
+```

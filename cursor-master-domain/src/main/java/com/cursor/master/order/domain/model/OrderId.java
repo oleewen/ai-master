@@ -15,8 +15,12 @@ public class OrderId extends Id {
         super(id);
     }
 
+    public static OrderId create(Long id) {
+        return new OrderId(id);
+    }
+
     public static OrderId create() {
-        return new OrderId(UUID.randomUUID().getLeastSignificantBits());
+        return create(UUID.randomUUID().getLeastSignificantBits());
     }
 
     public Long getId() {

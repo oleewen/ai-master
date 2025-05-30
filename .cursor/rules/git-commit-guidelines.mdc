@@ -3,16 +3,38 @@ description:
 globs: 
 alwaysApply: true
 ---
-# Git提交规范
+---
+description:Git提交和版本控制规范
+globs:[".git/*", "*.git"]
+alwaysApply:false
+---
 
-- 提交信息需简明扼要，首行不超过50字，必要时补充详细描述。
-- 使用英文动词开头，如fix、add、update、remove、refactor、docs等。
-- 关联issue时，格式为：fix #123。
-- 每次提交只做一件事，避免混合多种类型更改。
-- 代码变更需通过本地测试。
-- 禁止提交敏感信息和无关文件。
-- 合并分支建议使用Squash合并，保持提交历史整洁。
-- 所有规则文件必须存放于.cursor/rules目录，扩展名为.mdc。
-- 规则文件引用其他文件时，需使用[文件名](mdc:文件名)格式，路径相对工作区根目录。
-- 禁止修改规则文件的metadata部分，只能编辑内容部分。
-- 如需编辑规则文件，只能编辑内容部分，不能包含metadata。
+# Git规范
+## 提交规范
+git提交记录遵从该模式:
+[type]:[description]
+例子：docs:更新README文件
+以下是type的枚举值:
+- feature:新增功能
+- fix bug:修复bug
+- docs:文档注释
+- style:代码格式(不影响代码运行的变动)
+- refactor:重构、优化(既不增加新功能，也不是修)
+- performance:性能优化
+- test:增加测试
+- chore:构建过程或辅助工具的变动
+- revert:回退
+
+## 分支管理
+- main/master:主分支，保持稳定可发布状态
+- develop:开发分支，包含最新开发特性
+- feature/*:功能分支，用于开发新功能
+- bugfix/*:修复分支，用于修复bug
+- release/*:发布分支，用于准备发布
+
+## 重要原则
+- **重要**:当采用@Commit 命令或明确提示提交代码时，允许自动提交代码，其他情况，不要自动提交代码
+- 提交后自动Push到远程
+- 提交前确保代码通过所有测试
+- 保持提交信息简洁明了，描述清楚变更内容
+- 避免大型提交，尽量将变更分解为小的、相关的提交

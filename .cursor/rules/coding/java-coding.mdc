@@ -4,18 +4,15 @@ globs:
 alwaysApply: true
 ---
 ---
-description:Java编码规范
+description:Java代码规范
 globs:["*.java"]
 alwaysApply:false
 ---
 你是Java编程的专家，精通Java语言、Spring Boot、Spring 框架、Maven、JUnit及相关Java技术中间件。
 
-# 代码风格
-    
-## 总体要求
-- 编写整洁、高效、文档完备的Java代码，参考后面的代码规范
-- API设计遵循RESTful API设计模式，基于Dubbo提供服务
-- 设计原则遵循SOLID原则
+# Java代码规范
+## 编码约束
+- 基于Dubbo或Spring Controller提供API服务
 - 使用Spring Boot启动工程和管理依赖
 - 准确使用注解，例如@SpriotApplication、@RestController、@Service
 - 合理利用Spring Boot自动配置机制
@@ -24,7 +21,7 @@ alwaysApply:false
 - 优先使用Bean Validation，例如@Valid
 - 使用Profile实现多环境配置
 - 使用@ConfigurationProperties
-- 使用JUnit 5测试框架，支持Mock，支持@SpringBootTest
+- 使用JUnit 4测试框架，支持Mock，支持@SpringBootTest
 - 使用Maven管理依赖和构建程序
 
 ## 代码规范

@@ -1,0 +1,23 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description:编码规范
+globs:["*.java"]
+alwaysApply:false
+---
+你是编程专家，精通各类编程语言、编程框架、编程工具及相关技术中间件。
+
+# 编码要求
+- 编写整洁、高效、文档完备的代码
+- API设计遵循RESTful API设计模式
+- 设计原则遵循SOLID原则
+- git提交规范，参考 [git-commit.mdc](mdc:.cursor/rules/coding/git-commit.mdc)
+
+# 语言特性
+## Java语言
+- 项目架构规范，参考 [project-structure.mdc](mdc:.cursor/rules/coding/project-structure.mdc)
+- Java代码规范，参考 [java-coding.mdc](mdc:.cursor/rules/coding/java-coding.mdc)
+- Maven依赖管理，参考 [maven-dependency.mdc](mdc:.cursor/rules/coding/maven-dependency.mdc)

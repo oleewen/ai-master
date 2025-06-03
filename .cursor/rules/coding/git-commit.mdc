@@ -1,0 +1,83 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description:Git提交和版本控制规范
+globs:[".git/*", "*.git"]
+alwaysApply:false
+---
+
+# Git规范
+
+## 分支管理
+- main/master:主分支，保持稳定可发布状态
+- develop:开发分支，包含最新开发特性
+- feature/*:功能分支，用于开发新功能
+- bugfix/*:修复分支，用于修复bug
+- release/*:发布分支，用于准备发布
+
+## 分支策略
+```
+---
+title: Git Feature Diagram
+---
+gitGraph
+    commit
+    branch develop
+    checkout develop
+    commit
+    branch feature/feature-V1.0.0
+    checkout feature/feature-V1.0.0
+    commit
+    commit
+    checkout develop
+    merge feature/feature-V1.0.0
+    branch release/v1.2.0
+    commit
+    checkout main
+    merge release/v1.2.0
+    tag v1.2.0
+    checkout develop
+    merge release/v1.2.0
+```
+
+## 提交规范
+git提交记录遵从该模式:
+```
+<type>(<scope>): <subject>
+<BLANK LINE>
+<body>
+<BLANK LINE>
+<footer>
+```
+
+type的枚举说明：
+- feature:新增功能
+- fix bug:修复bug
+- docs:文档注释
+- style:代码格式(不影响代码运行的变动)
+- refactor:重构、优化(既不增加新功能，也不是修)
+- performance:性能优化
+- test:增加测试
+- chore:构建过程或辅助工具的变动
+- revert:回退
+
+示例：
+```
+feature(payment): 集成支付宝
+
+- 实现支付宝SDK
+- 增加支付回调
+
+Resolves: PROJ-123
+Related: PROJ-456
+```
+
+## 重要原则
+- **重要**:当采用@Commit 命令或明确提示提交代码时，允许自动提交代码，其他情况，不要自动提交代码
+- 提交后自动Push到远程
+- 提交前确保代码通过所有测试
+- 保持提交信息简洁明了，描述清楚变更内容
+- 避免大型提交，尽量将变更分解为小的、相关的提交

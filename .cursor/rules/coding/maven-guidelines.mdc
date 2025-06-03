@@ -5,40 +5,6 @@ alwaysApply: true
 ---
 # Maven使用规范
 
-## 项目结构
-
-### 模块划分
-- 按照DDD领域驱动设计原则划分模块
-- 每个模块独立维护自己的pom.xml
-- 模块命名规范：`项目名-模块名`
-
-### 目录结构
-```
-project-root/
-  ├── pom.xml                    # 父POM
-  ├── project-api/               # API模块：对外暴露的接口和DTO
-  ├── project-application/       # 应用层模块：业务流程编排
-  ├── project-boot/             # 启动模块：应用程序启动入口
-  ├── project-client/           # 客户端模块：RPC客户端实现
-  ├── project-common/           # 公共模块：共享的工具类和常量
-  ├── project-domain/           # 领域模块：核心业务逻辑
-  ├── project-infrastructure/   # 基础设施模块：技术实现
-  └── project-service/         # 服务模块：对外提供的服务实现
-```
-
-每个模块的标准目录结构：
-```
-module-name/
-  ├── src/
-  │   ├── main/
-  │   │   ├── java/            # Java源代码
-  │   │   └── resources/       # 配置文件
-  │   └── test/
-  │       ├── java/            # 测试源代码
-  │       └── resources/       # 测试配置文件
-  └── pom.xml                  # 模块POM文件
-```
-
 ## 依赖管理
 
 ### 版本管理

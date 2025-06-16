@@ -8,7 +8,7 @@ description:详细设计模板
 globs:["'*.md"]
 alwaysApply:true
 ---
-# 详设文档模板
+# 详细设计模板
 > 详设术语定义
 
 |术语|含义|示例|工程对标|数字编码

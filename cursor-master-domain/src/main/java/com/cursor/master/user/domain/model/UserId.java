@@ -3,14 +3,14 @@ package com.cursor.master.user.domain.model;
 import com.cursor.master.common.domain.Id;
 
 /**
- * 用户id
- *
- * @author only
- * @since 2020-05-22
+ * 用户ID值对象
  */
 public class UserId extends Id {
+    public UserId(Long value) {
+        super(value);
+    }
 
-    public UserId(Long id) {
-        super(id);
+    public static UserId of(Long value) {
+        return new UserId(value);
     }
 }

@@ -15,6 +15,7 @@ alwaysApply:false
 - 基于Dubbo或Spring Controller提供API服务
 - 使用Spring Boot启动工程和管理依赖
 - 准确使用注解，例如@SpriotApplication、@RestController、@Service
+- POJO采用@Data支持getter和setter
 - 合理利用Spring Boot自动配置机制
 - 使用@ControllerAdvice + @ExceptionHandler实现全局异常处理
 - 优先使用Java 17+特性

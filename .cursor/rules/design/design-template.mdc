@@ -177,3 +177,6 @@ CREATE TABLE `table_a` (
     PRIMARY KEY (`id`)
 );
 ```
+
+三、编码参考
+参考 [coding-guidelines.mdc](mdc:.cursor/rules/coding/coding-guidelines.mdc) 的设定

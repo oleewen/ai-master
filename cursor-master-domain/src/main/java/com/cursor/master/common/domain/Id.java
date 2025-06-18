@@ -6,7 +6,7 @@ package com.cursor.master.common.domain;
  * @author only
  * @since 2020-05-22
  */
-public abstract class Id implements ValueObject<Long> {
+public abstract class Id implements ValueObjectId<Long> {
     /** id */
     private Long id;
 

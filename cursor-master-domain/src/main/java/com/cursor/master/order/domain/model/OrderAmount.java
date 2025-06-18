@@ -1,7 +1,7 @@
 package com.cursor.master.order.domain.model;
 
 import com.cursor.master.common.domain.MonetaryAmount;
-import com.cursor.master.common.domain.ValueObject;
+import com.cursor.master.common.domain.ValueObjectId;
 import lombok.Getter;
 
 /**
@@ -11,7 +11,7 @@ import lombok.Getter;
  * @since 2020-05-22
  */
 @Getter
-public class OrderAmount implements ValueObject<Long> {
+public class OrderAmount implements ValueObjectId<Long> {
     /** 订单金额 */
     private MonetaryAmount amount;
 

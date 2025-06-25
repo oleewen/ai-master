@@ -48,6 +48,7 @@ alwaysApply:true
 - 区分命令与查询职责分离(CQRS)
 
 ## 最佳实践
+- 概要设计遵循 [architecture-template.mdc](mdc:.cursor/rules/design/architecture-template.mdc) 模板
 - 详细设计遵循 [design-template.mdc](mdc:.cursor/rules/design/design-template.mdc) 模板
 - API设计遵循RESTful风格
 - 使用事件驱动架构处理异步业务场景

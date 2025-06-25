@@ -6,7 +6,7 @@ alwaysApply: true
 ---
 description:项目结构规范
 globs:["*"]
-alwaysApply:false
+alwaysApply:true
 ---
 你是领域驱动设计专家，精通DDD、领域分层模式、整洁架构模式。
 

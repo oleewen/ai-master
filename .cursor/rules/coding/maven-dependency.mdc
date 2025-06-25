@@ -3,6 +3,11 @@ description:
 globs: 
 alwaysApply: true
 ---
+---
+description:Maven管理规范
+globs:["*.pom"]
+alwaysApply:true
+---
 # Maven使用规范
 
 ## 依赖管理

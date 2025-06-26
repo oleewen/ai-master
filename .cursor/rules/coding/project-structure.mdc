@@ -13,54 +13,17 @@ alwaysApply:true
 # 项目结构规范
 ## 工程模块
 - 用户接口模块:api
-- 服务适配模块:service
-- 应用服务模块:application
+- 服务适配模块:service，依赖api、application
+- 应用服务模块:application，依赖domain
 - 领域服务模块:domain
-- 基础设施模块:infrastructure
-- 应用启动模块:boot
+- 基础设施模块:infrastructure，依赖domain
+- 应用启动模块:boot，依赖service、infrastructure
 
 > 生成代码时，参考工程模块的顺序生成
 
-## 目录结构
-```
-project-root/
-  ├── pom.xml                    # 父POM
-  ├── project-api/               # API模块：对外暴露的接口和DTO
-  ├── project-service/         # 服务模块：对外提供的服务实现
-  ├── project-application/       # 应用层模块：业务流程编排
-  ├── project-client/           # 客户端模块：RPC客户端实现
-  ├── project-common/           # 公共模块：共享的工具类和常量
-  ├── project-domain/           # 领域模块：核心业务逻辑
-  ├── project-infrastructure/   # 基础设施模块：技术实现
-  └── project-boot/             # 启动模块：应用程序启动入口
-```
-
-## 目录标准
-每个模块的标准目录结构：
-```
-module-name/
-  ├── src/
-  │   ├── main/
-  │   │   ├── java/            # Java源代码
-  │   │   └── resources/       # 配置文件
-  │   └── test/
-  │       ├── java/            # 测试源代码
-  │       └── resources/       # 测试配置文件
-  └── pom.xml                  # 模块POM文件
-```
-
-## 依赖关系
-boot --> service
-boot --> infrastructure
-service --> api
-service --> application
-application --> domain
-infrastructure --> domain
-
 ## 模块职责
 #### 用户接口模块（api层）
-- 对应领域分层的用户接口层的接口
-- 定义服务接口，含公共常量&通用定义，服务接口定义
+- 对应领域分层的用户接口层的接口，定义服务接口，含公共常量&通用定义，服务接口定义
 - RPC服务接口定义Service（api领域开放接口，service领域封闭接口，open开放接口），采用{Aggregate}Service命名
 - 输入输出对象：对象采用{Aggregate}{Activity}Request|Response|Param|DTO命名，均用`@Data`注解，禁止直接暴露领域对象
 - 代码结构如下
@@ -73,11 +36,9 @@ infrastructure --> domain
     ```
 
 #### 服务适配模块（service层）
-- 对应领域分层的用户接口层的适配器
+- 对应领域分层的用户接口层的适配器，实现接口的输入输出转换、全局异常处理、状态码封装
 - 如果定义了api模块的接口，接口实现为{Aggregate}Provider，调用{Aggregate}ApplicationService
-- 输入验证、转换，将API层Request对象转换为Command对象
-- 输出封装，将Result对象转换为Response对象
-- 全局异常、状态码封装
+- 输入验证、转换，将API层Request对象转换为Command对象；输出封装，将Result对象转换为Response对象
 - 对象转换均通过静态工厂{Aggregate}ProviderFactory的静态方法实现，基于mapstruct实现转换
 - 代码结构如下
     ```java
@@ -100,11 +61,7 @@ infrastructure --> domain
     ```
 
 #### 应用服务模块（application层）
-- 对应领域分层的应用服务层
-- 用户命令的处理流程编排
-- 负责控制逻辑，定义处理的步骤
-- 协调领域服务，完成处理时序
-- 实现应用服务层，面向用例或用户故事，实现业务任务（action）编排
+- 对应领域分层的应用服务层，用户命令的处理流程编排，负责控制逻辑，定义处理的步骤，协调领域服务，完成处理时序
 - 应用服务只接收{Aggregate}{Activity}Command对象，返回{Aggregate}{Activity}Result对象
 - 对象转换均通过静态工厂{Aggregate}CommandFactory的静态方法实现，基于mapstruct实现转换
 - 业务任务（action）的方法按照业务任务命名，可以传入command对象，依赖DomainService或QueryHandler
@@ -121,11 +78,9 @@ infrastructure --> domain
 
 #### 领域服务模块（domain层）
 - 领域服务service对应领域分层的领域服务层，负责业务逻辑实现
-- 领域服务service负责聚合根的写模型，管理生命周期和一致性
-- 查询门面facade负责聚合根对象的读模型
-- 资源库repository定义聚合根持久化能力
+- 领域服务service负责聚合根的写模型，管理生命周期和一致性，查询门面facade负责聚合根对象的读模型
 - 领域模型model包括聚合根、实体、值对象，各领域对象用@Data支持getter和setter
-- service和facade依赖repository，聚合根的持久化均通过Repository接口完成
+- 资源库repository定义聚合根持久化接口，service和facade依赖repository完成聚合根的持久化
 - 代码结构如下
     ```java
     - com.${company}.${businessdomain}.${aggregate}.domain
@@ -139,8 +94,7 @@ infrastructure --> domain
 ## 基础设施模块（infrastructure层）
 - 对应领域分层的基础设施层，实现对象持久化，通过事务确保聚合根数据一致性
 - 资源库实现类采用{Aggregate}Dao命名，负责数据库存取，实现领域Repository接口
-- 数据实体采用{Aggregate}Entity命名
-- Mapper对象基于tk.mybatis实现，不生成mapper.xml文件
+- 数据实体采用{Aggregate}Entity命名，Mapper对象基于tk.mybatis实现，不生成mapper.xml文件
 - 工厂采用{Aggregate}EntityFactory命名，通过静态工厂的静态方法实现，基于MapStruct实现对象转换
 - 代码结构如下
     ```java

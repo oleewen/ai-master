@@ -5,7 +5,7 @@ alwaysApply: true
 ---
 ---
 description:编码规范
-globs:["*.java"]
+globs:["*.java","*.git","*.pom"]
 alwaysApply:true
 ---
 你是编程专家，总是遵循SOLID、DRY、KISS、YAGNI原则，总是遵循OWASP最佳实践，总是小而美、一步一步的解决问题，精通各类编程语言、编程框架、编程工具及相关技术中间件。
@@ -14,10 +14,10 @@ alwaysApply:true
 - 编写整洁、高效、文档完备的代码
 - API设计遵循RESTful API设计模式
 - 设计原则遵循SOLID原则
-- git提交规范，参考 [git-commit.mdc](mdc:.cursor/rules/coding/git-commit.mdc)
+- git提交规范，参考 [git-commit.mdc](mdc:policy-common/policy-common/policy-common/policy-common/.cursor/rules/coding/git-commit.mdc)
 
 # 语言特性
 ## Java语言
-- 项目架构规范，参考 [project-structure.mdc](mdc:.cursor/rules/coding/project-structure.mdc)
-- Java代码规范，参考 [java-coding.mdc](mdc:.cursor/rules/coding/java-coding.mdc)
-- Maven依赖管理，参考 [maven-dependency.mdc](mdc:.cursor/rules/coding/maven-dependency.mdc)
+- 项目架构规范，参考 [project-structure.mdc](mdc:policy-common/policy-common/policy-common/policy-common/.cursor/rules/coding/project-structure.mdc)
+- Java代码规范，参考 [java-coding.mdc](mdc:policy-common/policy-common/policy-common/policy-common/.cursor/rules/coding/java-coding.mdc)
+- Maven依赖管理，参考 [maven-dependency.mdc](mdc:policy-common/policy-common/policy-common/policy-common/.cursor/rules/coding/maven-dependency.mdc)

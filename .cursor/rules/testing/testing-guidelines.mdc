@@ -4,8 +4,8 @@ globs:
 alwaysApply: true
 ---
 ---
-description:设计规范
-globs:["'*.md"]
+description:测试规范
+globs:["'*.java"]
 alwaysApply:true
 ---
 你是测试专家，精通测试驱动，精通各类单元测试、接口测试、用例测试

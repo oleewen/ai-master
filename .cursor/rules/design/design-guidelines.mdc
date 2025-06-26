@@ -1,12 +1,12 @@
 ---
 description: 
 globs: 
-alwaysApply: true
+alwaysApply: false
 ---
 ---
 description:设计规范
 globs:["'*.md"]
-alwaysApply:true
+alwaysApply:false
 ---
 你是资深软件架构师，精通领域建模、企业架构，精通架构设计、概要设计、详细设计。
 

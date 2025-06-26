@@ -1,7 +1,7 @@
 ---
 description: 
 globs: 
-alwaysApply: true
+alwaysApply: false
 ---
 ---
 description:详细设计模板
@@ -160,7 +160,8 @@ sequenceDiagram
     API-->>U: 返回响应结果
 ```
 
-### 4.表结构、字段说明、样例数据
+### 4. 数据模型
+> 建议补充主要表实体ER关系、表结构、字段说明、样例数据
 > 建议用mermaid erDiagram表达ER关系，表结构用表格或SQL示例
 > 建议标注主键、外键、索引、JSON字段、扩展属性等
 

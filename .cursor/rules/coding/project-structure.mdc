@@ -10,6 +10,8 @@ alwaysApply:true
 ---
 你是领域驱动设计专家，精通DDD、领域分层模式、整洁架构模式。
 
+> 生成代码时，参考工程模块的顺序生成，并遵循后面模块职责规定的各类方法命名和实现约束
+
 # 项目结构规范
 ## 工程模块
 - 用户接口模块:api
@@ -19,16 +21,14 @@ alwaysApply:true
 - 基础设施模块:infrastructure，依赖domain
 - 应用启动模块:boot，依赖service、infrastructure
 
-> 生成代码时，参考工程模块的顺序生成
-
 ## 模块职责
 #### 用户接口模块（api层）
 - 对应领域分层的用户接口层的接口，定义服务接口，含公共常量&通用定义，服务接口定义
-- RPC服务接口定义Service（api领域开放接口，service领域封闭接口，open开放接口），采用{Aggregate}Service命名
-- 输入输出对象：对象采用{Aggregate}{Activity}Request|Response|Param|DTO命名，均用`@Data`注解，禁止直接暴露领域对象
+- RPC服务接口定义Service，采\${Aggregate}Service命名，放在独立的com.\${company}.\${businessdomain}.\${aggregate}包下
+- 输入输出对象：对象采用\${Aggregate}\${Activity}Request|Response|Param|DTO命名，均用`@Data`注解，禁止直接暴露领域对象
 - 代码结构如下
     ```java
-    - com.${company}.${businessdomain}.${aggregate}.api|service|open
+    - com.${company}.${businessdomain}.${aggregate}.api|service|open // api领域开放接口，service领域封闭接口，open开放接口
         |- request    // 请求参数
         |- response   // 响应结果
         |- dto        // 数据传输对象
@@ -37,9 +37,9 @@ alwaysApply:true
 
 #### 服务适配模块（service层）
 - 对应领域分层的用户接口层的适配器，实现接口的输入输出转换、全局异常处理、状态码封装
-- 如果定义了api模块的接口，接口实现为{Aggregate}Provider，调用{Aggregate}ApplicationService
+- 如果定义了api模块的接口\${Aggregate}Serive，实现为\${Aggregate}Provider，调用{Aggregate}ApplicationService
 - 输入验证、转换，将API层Request对象转换为Command对象；输出封装，将Result对象转换为Response对象
-- 对象转换均通过静态工厂{Aggregate}ProviderFactory的静态方法实现，基于mapstruct实现转换
+- 对象转换均通过静态工厂\${Aggregate}ProviderFactory的静态方法实现，基于MapStruct实现转换
 - 代码结构如下
     ```java
     - com.${company}.${businessdomain}.${aggregate}

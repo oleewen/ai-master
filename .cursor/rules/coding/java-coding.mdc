@@ -12,11 +12,11 @@ alwaysApply:true
 
 # Java代码规范
 ## 编码约束
-- 优先使用Java 17+特性，优先使用Bean Validation，例如@Valid
+- 优先使用Java 17+特性，优先使用Bean Validation，例如@Valid，优先使用全局验证过滤器或者拦截器
 - 使用Spring Boot启动工程和自动配置机制，使用@ConfigurationProperties，使用Profile实现多环境配置
-- 准确使用注解，例如@SpriotApplication、@Component、@Service、@Resouce
-- POJO采用@Data支持getter和setter
-- 使用全局异常处理
-- 基于Dubbo提供API服务
+- 准确使用注解，优先使用Java的注解，其次Spring的，例如@Component、@Service、@Resouce
+- POJO采用@Data支持getter和setter，各对象均采用静态工厂的静态方法实现转换，转换代码采用MapStruct实现
+- 用户接口层使用全局异常处理，转换为状态码返回，基础设施层捕捉到异常或者业务状态问题转换为非受检异常抛出
+- 基于Dubbo提供API服务，基于MyBatis提供数据库Mapper，基于tk mybatis实现Mapper
 - 使用JUnit 4测试框架，支持Mock，支持@SpringBootTest
 - 使用Maven管理依赖和构建程序

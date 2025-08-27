@@ -1,0 +1,128 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description:项目结构规范
+globs:["*"]
+alwaysApply:true
+---
+你是领域驱动设计专家，精通DDD、领域分层模式、整洁架构模式。
+
+> 生成代码时，参考工程模块的顺序生成，并遵循后面模块职责规定的各类方法命名和实现约束
+
+# 项目结构规范
+## 工程模块
+- 用户接口模块:api
+- 服务适配模块:service，依赖api、application
+- 应用服务模块:application，依赖domain
+- 领域服务模块:domain
+- 基础设施模块:infrastructure，依赖domain
+- 应用启动模块:boot，依赖service、infrastructure
+
+## 模块职责
+#### 用户接口模块（api层）
+- 对应领域分层的用户接口层的接口，定义服务接口，含公共常量&通用定义，服务接口定义
+- RPC服务接口定义Service，采\${Aggregate}Service命名，放在独立的com.\${company}.\${businessdomain}.\${aggregate}包下
+- 输入输出对象：对象采用\${Aggregate}\${Activity}Request|Response|Param|DTO命名，均用`@Data`注解，禁止直接暴露领域对象
+- 代码结构如下
+    ```java
+    - com.${company}.${businessdomain}.${aggregate}.api|service|open // api领域开放接口，service领域封闭接口，open开放接口
+        |- request    // 请求参数
+        |- response   // 响应结果
+        |- dto        // 数据传输对象
+        \- ${Aggregate}Service // 微服务，以聚合根为中心提供服务，可外加限定词
+    ```
+
+#### 服务适配模块（service层）
+- 对应领域分层的用户接口层的适配器，实现接口的输入输出转换、全局异常处理、状态码封装
+- 如果定义了api模块的接口\${Aggregate}Serive，实现为\${Aggregate}Provider，调用{Aggregate}ApplicationService
+- 输入验证、转换，将API层Request对象转换为Command对象；输出封装，将Result对象转换为Response对象
+- 对象转换均通过静态工厂\${Aggregate}ProviderFactory的静态方法实现，基于MapStruct实现转换
+- 代码结构如下
+    ```java
+    - com.${company}.${businessdomain}.${aggregate}
+        |- mq  // 消息
+        | |- consumer  // 订阅消费者
+        | \- listener  // 监听器
+        |- job // 调度Job
+        | |- task   // 任务
+        | \- handle // 任务处理器
+        |- provider  // 接口实现
+          |- rpc // rpc方式
+          | \- ${Aggregate}Provider // API实现
+          |- web // web方式
+          | |- controller
+          | \- ${Aggregate}Controller // Spring Controller
+          |- factory  // 工厂
+          |- config  // 配置
+          \- filter  // 过滤器  
+    ```
+
+#### 应用服务模块（application层）
+- 对应领域分层的应用服务层，用户命令的处理流程编排，负责控制逻辑，定义处理的步骤，协调领域服务，完成处理时序
+- 应用服务只接收{Aggregate}{Activity}Command对象，返回{Aggregate}{Activity}Result对象
+- 对象转换均通过静态工厂{Aggregate}CommandFactory的静态方法实现，基于mapstruct实现转换
+- 业务任务（action）的方法按照业务任务命名，可以传入command对象，依赖DomainService或QueryHandler
+- 代码结构如下
+    ```java
+    - com.${company}.${businessdomain}.${aggregate}.application
+        |- service  // 应用服务
+        |- action   // 业务任务
+        |- command  // 命令
+        |- query    // 查询
+        |- result   // 结果
+        \- factory  // 命令/查询工厂，完成command和query转领域对象
+    ```
+
+#### 领域服务模块（domain层）
+- 领域服务service对应领域分层的领域服务层，负责业务逻辑实现
+- 领域服务service负责聚合根的写模型，管理生命周期和一致性，查询门面facade负责聚合根对象的读模型
+- 领域模型model包括聚合根、实体、值对象，各领域对象用@Data支持getter和setter
+- 资源库repository定义聚合根持久化接口，service和facade依赖repository完成聚合根的持久化
+- 代码结构如下
+    ```java
+    - com.${company}.${businessdomain}.${aggregate}.domain
+        |- service    // DomainService
+        |- facade     // QueryFacade
+        |- model      // 领域模型
+        |- event      // 领域事件
+        \- repository // 资源库
+    ```
+
+## 基础设施模块（infrastructure层）
+- 对应领域分层的基础设施层，实现对象持久化，通过事务确保聚合根数据一致性
+- 资源库实现类采用{Aggregate}Dao命名，负责数据库存取，实现领域Repository接口
+- 数据实体采用{Aggregate}Entity命名，Mapper对象基于tk.mybatis实现，不生成mapper.xml文件
+- 工厂采用{Aggregate}EntityFactory命名，通过静态工厂的静态方法实现，基于MapStruct实现对象转换
+- 代码结构如下
+    ```java
+    - com.${company}.${businessdomain}.${aggregate}.infrastructure
+        |- dao      // 资源库实现
+        |- config   // 资源配置
+        |- entity   // 数据实体
+        |- mapper   // mapper对象
+        |- message  // 消息
+        \- factory  // 数据实体工厂，完成数据实体转领域对象
+   ```
+
+#### 共享模块
+- 定义共享对象，被用户接口模块、领域服务模块依赖
+- 开放的常量const、枚举enum、通用util类、异常类
+- 代码结构如下
+    ```java
+    - com.${company}.${businessdomain}.${aggregate}.common
+        |- consts   // 常量，大部分常量应该定义在各对象，极少数定义成独立常量
+        |- enums    // 枚举
+        |- utils    // 辅助类
+        \- exception // 自定义异常
+    ```
+
+#### 应用启动模块
+- 负责启动应用，定义Spring Boot Application
+- 代码结构如下
+    ```java
+    - com.${company}.${businessdomain}.${aggregate}.boot
+        \- spring.SpringBootApplication.java // 启动类
+    ```

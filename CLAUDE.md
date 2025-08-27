@@ -137,6 +137,7 @@ All development work must follow the guidelines defined in `.claude/` directory:
 - **`.claude/java-guidelines.md`** - Java coding standards and patterns
 - **`.claude/git-guidelines.md`** - Git commit conventions and workflow
 - **`.claude/testing-guidelines.md`** - Testing requirements and practices
+- **`project-structure.md`** - Project structure standards
 
 ### Key Constraints
 - **Design**: Follow DDD principles with clean hexagonal architecture

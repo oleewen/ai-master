@@ -8,6 +8,7 @@ This directory contains Claude-specific rules and guidelines derived from the pr
 |------|---------|
 | `rules.md` | General project rules and architecture |
 | `java-guidelines.md` | Java-specific coding standards |
+| `project-structure.md` | Project structure standards |
 | `git-guidelines.md` | Git commit and workflow guidelines |
 | `testing-guidelines.md` | Testing standards and practices |
 

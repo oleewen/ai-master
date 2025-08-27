@@ -129,6 +129,28 @@ ai-master-boot (startup)
 └── ai-master-client (external client APIs)
 ```
 
+## Project Standards & Guidelines
+
+All development work must follow the guidelines defined in `.claude/` directory:
+
+- **`.claude/rules.md`** - General project rules and architecture
+- **`.claude/java-guidelines.md`** - Java coding standards and patterns
+- **`.claude/git-guidelines.md`** - Git commit conventions and workflow
+- **`.claude/testing-guidelines.md`** - Testing requirements and practices
+
+### Key Constraints
+- **Design**: Follow DDD principles with clean hexagonal architecture
+- **Coding**: Use Java 17+ features, Spring Boot best practices, proper validation
+- **Code Commits**: Follow Conventional Commits format (feature/fix/docs/refactor/test/chore)
+- **Project Structure**: Maintain strict DDD layering (API → Service → Application → Domain → Infrastructure)
+
+### Quality Gates
+- **Unit Test Coverage**: ≥80%
+- **Code Duplication**: ≤5%
+- **Critical Issues**: 0
+- **Compilation Warnings**: 0
+- **Code Style Violations**: ≤10
+
 ## Technology Stack
 - **Java**: 17
 - **Spring Boot**: 2.7.10
@@ -138,3 +160,10 @@ ai-master-boot (startup)
 - **Documentation**: Swagger/OpenAPI
 - **Validation**: Bean Validation 2.0
 - **Object Mapping**: MapStruct 1.5.0+
+
+## Development Workflow
+1. **Always** read `.claude/README.md` before starting work
+2. **Follow** the specific guidelines for each layer
+3. **Write tests first** (TDD approach)
+4. **Use conventional commits** for all changes
+5. **Ensure quality gates** are met before PR

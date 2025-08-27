@@ -68,3 +68,4 @@ Thumbs.db
 
 # Spring Boot
 spring-boot-*.pid 
+.claude/settings.local.json

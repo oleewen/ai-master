@@ -8,15 +8,15 @@
         <version>2.7.10</version>
     </parent>
 
-    <groupId>cursor-master</groupId>
-    <artifactId>cursor-master</artifactId>
+    <groupId>ai-master</groupId>
+    <artifactId>ai-master</artifactId>
     <version>${revision}</version>
     <name>name</name>
     <description>description</description>
     <packaging>pom</packaging>
 
     <properties>
-        <start-class>com.cursor.master.ApplicationStarter</start-class>
+        <start-class>com.ai.master.ApplicationStarter</start-class>
         <project.encoding>UTF-8</project.encoding>
         <java.version>17</java.version>
         <revision>1.0.0-SNAPSHOT</revision>
@@ -25,14 +25,14 @@
     </properties>
 
     <modules>
-        <module>cursor-master-boot</module>
-        <module>cursor-master-service</module>
-        <module>cursor-master-infrastructure</module>
-        <module>cursor-master-application</module>
-        <module>cursor-master-domain</module>
-        <module>cursor-master-common</module>
-        <module>cursor-master-client</module>
-        <module>cursor-master-api</module>
+        <module>ai-master-boot</module>
+        <module>ai-master-service</module>
+        <module>ai-master-infrastructure</module>
+        <module>ai-master-application</module>
+        <module>ai-master-domain</module>
+        <module>ai-master-common</module>
+        <module>ai-master-client</module>
+        <module>ai-master-api</module>
     </modules>
     
     <dependencyManagement>
@@ -41,38 +41,38 @@
             <!-- 模块依赖 -->
             <!-- ======= -->
             <dependency>
-                <groupId>cursor-master</groupId>
-                <artifactId>cursor-master-service</artifactId>
+                <groupId>ai-master</groupId>
+                <artifactId>ai-master-service</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
-                <groupId>cursor-master</groupId>
-                <artifactId>cursor-master-infrastructure</artifactId>
+                <groupId>ai-master</groupId>
+                <artifactId>ai-master-infrastructure</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
-                <groupId>cursor-master</groupId>
-                <artifactId>cursor-master-application</artifactId>
+                <groupId>ai-master</groupId>
+                <artifactId>ai-master-application</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
-                <groupId>cursor-master</groupId>
-                <artifactId>cursor-master-domain</artifactId>
+                <groupId>ai-master</groupId>
+                <artifactId>ai-master-domain</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
-                <groupId>cursor-master</groupId>
-                <artifactId>cursor-master-common</artifactId>
+                <groupId>ai-master</groupId>
+                <artifactId>ai-master-common</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
-                <groupId>cursor-master</groupId>
-                <artifactId>cursor-master-api</artifactId>
+                <groupId>ai-master</groupId>
+                <artifactId>ai-master-api</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
-                <groupId>cursor-master</groupId>
-                <artifactId>cursor-master-client</artifactId>
+                <groupId>ai-master</groupId>
+                <artifactId>ai-master-client</artifactId>
                 <version>${revision}</version>
             </dependency>
 

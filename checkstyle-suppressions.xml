@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+    "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+
+<!--
+  检查规则例外配置
+  用于排除特定文件或模式的检查
+-->
+<suppressions>
+    
+    <!-- 基础设施层允许使用时间类 -->
+    <suppress checks="IllegalImport"
+              files=".*infrastructure.*\.java"/>
+    
+    <suppress checks="Regexp"
+              files=".*infrastructure.*\.java"/>
+    
+    <!-- 测试类允许使用时间类 -->
+    <suppress checks="IllegalImport"
+              files=".*test.*\.java"/>
+    
+    <suppress checks="Regexp"
+              files=".*test.*\.java"/>
+    
+    <!-- 应用层允许使用时间类 -->
+    <suppress checks="IllegalImport"
+              files=".*application.*\.java"/>
+    
+    <suppress checks="Regexp"
+              files=".*application.*\.java"/>
+    
+    <!-- API层允许使用时间类 -->
+    <suppress checks="IllegalImport"
+              files=".*api.*\.java"/>
+    
+    <suppress checks="Regexp"
+              files=".*api.*\.java"/>
+    
+    <!-- 服务层允许使用时间类 -->
+    <suppress checks="IllegalImport"
+              files=".*service.*\.java"/>
+    
+    <suppress checks="Regexp"
+              files=".*service.*\.java"/>
+    
+    <!-- 启动类允许使用时间类 -->
+    <suppress checks="IllegalImport"
+              files=".*boot.*\.java"/>
+    
+    <suppress checks="Regexp"
+              files=".*boot.*\.java"/>
+    
+    <!-- 公共模块允许使用时间类 -->
+    <suppress checks="IllegalImport"
+              files=".*common.*\.java"/>
+    
+    <suppress checks="Regexp"
+              files=".*common.*\.java"/>
+    
+    <!-- 客户端模块允许使用时间类 -->
+    <suppress checks="IllegalImport"
+              files=".*client.*\.java"/>
+    
+    <suppress checks="Regexp"
+              files=".*client.*\.java"/>
+    
+</suppressions>

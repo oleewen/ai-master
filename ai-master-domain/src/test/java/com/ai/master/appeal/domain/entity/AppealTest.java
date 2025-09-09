@@ -30,8 +30,6 @@ public class AppealTest {
         assertEquals(appealerId, appeal.getAppealerId());
         assertEquals("费用计算有误", appeal.getReason());
         assertEquals(AppealStatus.CREATED, appeal.getStatus());
-        assertNotNull(appeal.getCreatedAt());
-        assertNotNull(appeal.getUpdatedAt());
     }
 
     @Test

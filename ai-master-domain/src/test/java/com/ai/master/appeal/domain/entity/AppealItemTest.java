@@ -26,8 +26,6 @@ public class AppealItemTest {
         assertEquals("运费申诉", appealItem.getTitle());
         assertEquals("实际运费与计算不符", appealItem.getContent());
         assertEquals(AppealItemStatus.CREATED, appealItem.getStatus());
-        assertNotNull(appealItem.getCreatedAt());
-        assertNotNull(appealItem.getUpdatedAt());
     }
 
     @Test

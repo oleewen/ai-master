@@ -15,7 +15,7 @@
 
         <plugin type="org.mybatis.generator.plugins.MapperConfigPlugin">
             <property name="fileName" value="mapper-config.xml"/>
-            <property name="targetPackage" value="com.cursor.master.base.mapper"/>
+            <property name="targetPackage" value="com.ai.master.base.mapper"/>
             <property name="targetProject"
                       value="MAVEN"/>
         </plugin>

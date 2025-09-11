@@ -31,8 +31,10 @@
         </commentGenerator>
 
         <!-- jdbc连接 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://10.95.117.12:3306/core" userId="root" password="123456"/>
+        <jdbcConnection driverClass="${db.driverClass}"
+                        connectionURL="${db.url}" userId="${db.username}" password="${db.password}">
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
         <!-- 类型转换 -->
         <javaTypeResolver>
             <!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->

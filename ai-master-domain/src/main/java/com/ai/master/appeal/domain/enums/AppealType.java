@@ -4,12 +4,13 @@ package com.ai.master.appeal.domain.enums;
  * 申诉类型枚举
  */
 public enum AppealType {
-    WEIGHT("重量", "重量申诉"),
-    FEE("费用", "费用申诉"),
-    DESTINATION("目的地", "目的地申诉"),
-    TIME("时效", "时效申诉"),
-    SERVICE("服务", "服务申诉"),
-    OTHER("其他", "其他申诉");
+    WEIGHT("weight", "重量申诉"),
+    FEE("fee", "费用申诉"),
+    DESTINATION("destination", "目的地申诉"),
+    TIME("time", "时效申诉"),
+    SERVICE("service", "服务申诉"),
+    OTHER("other", "其他申诉"),
+    UNDEFINED("undefined", "未定义");
     
     private final String code;
     private final String title;
@@ -25,5 +26,18 @@ public enum AppealType {
     
     public String getTitle() {
         return title;
+    }
+
+    /**
+     * 将字符串转换为申诉类型枚举
+     */
+    public static AppealType fromCode(String code) {
+        if (code == null) {
+            return UNDEFINED;
+        }
+        return java.util.Arrays.stream(values())
+                .filter(e -> e.getCode().equalsIgnoreCase(code))
+                .findFirst()
+                .orElse(UNDEFINED);
     }
 }

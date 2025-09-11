@@ -2,6 +2,8 @@ package com.ai.master.appeal.api.dto;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * 导入申诉明细响应DTO
  */

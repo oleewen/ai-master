@@ -1,6 +1,7 @@
 package com.ai.master.appeal.application.service;
 
 import com.ai.master.appeal.application.command.*;
+import com.ai.master.appeal.application.converter.DateTimeConverter;
 import com.ai.master.appeal.application.dto.*;
 import com.ai.master.appeal.domain.entity.Appeal;
 import com.ai.master.appeal.domain.entity.AppealItem;
@@ -58,7 +59,7 @@ public class AppealApplicationService {
             command.getItems().forEach(item -> {
                 appealDomainService.addAppealItem(
                     appeal,
-                    item.getType(),
+                    AppealType.fromCode(item.getType()),
                     item.getTitle(),
                     item.getContent()
                 );
@@ -184,7 +185,7 @@ public class AppealApplicationService {
                 .appealId(appeal.getId().getValue())
                 .reason(appeal.getReason())
                 .itemCount(appeal.getItems().size())
-                .createdAt(appeal.getCreatedAt())
+                .createdAt(DateTimeConverter.toLocalDateTime(appeal.getCreatedAt()))
                 .build())
             .collect(Collectors.toList());
         
@@ -202,7 +203,7 @@ public class AppealApplicationService {
             .orElseThrow(() -> new IllegalArgumentException("申诉单不存在"));
         
         // 审核申诉单
-        appealDomainService.auditAppeal(appeal, command.isPassed());
+        appealDomainService.auditAppeal(appeal, command.getPassed());
         
         // 审核申诉项
         if (command.getItemAudits() != null && !command.getItemAudits().isEmpty()) {
@@ -213,7 +214,7 @@ public class AppealApplicationService {
                     .ifPresent(item -> {
                         appealDomainService.auditAppealItem(
                             item,
-                            itemAudit.isPassed(),
+                            itemAudit.getPassed(),
                             itemAudit.getOpinion()
                         );
                     });
@@ -241,7 +242,7 @@ public class AppealApplicationService {
                 .reason(appeal.getReason())
                 .status(appeal.getStatus())
                 .itemCount(appeal.getItems().size())
-                .createdAt(appeal.getCreatedAt())
+                .createdAt(DateTimeConverter.toLocalDateTime(appeal.getCreatedAt()))
                 .build())
             .collect(Collectors.toList());
         

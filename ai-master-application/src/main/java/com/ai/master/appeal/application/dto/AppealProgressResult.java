@@ -1,5 +1,6 @@
 package com.ai.master.appeal.application.dto;
 
+import com.ai.master.appeal.domain.enums.AppealItemStatus;
 import com.ai.master.appeal.domain.enums.AppealStatus;
 import lombok.Builder;
 import lombok.Data;
@@ -35,6 +36,6 @@ public class AppealProgressResult {
         private String title;
         
         /** 申诉项状态 */
-        private AppealStatus status;
+        private AppealItemStatus status;
     }
 }

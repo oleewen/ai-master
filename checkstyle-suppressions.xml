@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+    "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+
+<!--
+    Suppressions for Checkstyle rules.
+    This file is used to suppress certain rules for specific files or patterns.
+-->
+<suppressions>
+    <!-- 抑制生成的代码的检查 -->
+    <suppress checks=".*" files=".*\.generated\.java"/>
+    <suppress checks=".*" files=".*[\\/]generated[\\/].*\.java"/>
+    <suppress checks=".*" files=".*[\\/]gen[\\/].*\.java"/>
+    
+    <!-- 抑制MyBatis生成的代码 -->
+    <suppress checks=".*" files=".*Mapper\.java"/>
+    <suppress checks=".*" files=".*Entity\.java"/>
+    <suppress checks=".*" files=".*Criteria\.java"/>
+    <suppress checks=".*" files=".*Example\.java"/>
+    
+    <!-- 抑制测试文件中的某些检查 -->
+    <suppress checks="LineLength" files=".*Test\.java"/>
+    <suppress checks="MagicNumber" files=".*Test\.java"/>
+    <suppress checks="VisibilityModifier" files=".*Test\.java"/>
+    
+    <!-- 抑制Spring Boot启动类中的某些检查 -->
+    <suppress checks="HideUtilityClassConstructor" files=".*Application\.java"/>
+    <suppress checks="HideUtilityClassConstructor" files=".*Starter\.java"/>
+    
+    <!-- 抑制DTO/VO类中的某些检查 -->
+    <suppress checks="VisibilityModifier" files=".*DTO\.java"/>
+    <suppress checks="VisibilityModifier" files=".*VO\.java"/>
+    <suppress checks="VisibilityModifier" files=".*Request\.java"/>
+    <suppress checks="VisibilityModifier" files=".*Response\.java"/>
+    
+    <!-- 抑制枚举类中的某些检查 -->
+    <suppress checks="LineLength" files=".*Enum\.java"/>
+    
+    <!-- 抑制常量类中的某些检查 -->
+    <suppress checks="HideUtilityClassConstructor" files=".*Constant\.java"/>
+    <suppress checks="HideUtilityClassConstructor" files=".*Constants\.java"/>
+</suppressions>

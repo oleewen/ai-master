@@ -6,8 +6,9 @@ import com.ai.master.appeal.application.command.*;
 import com.ai.master.appeal.application.dto.*;
 import com.ai.master.appeal.application.service.AppealApplicationService;
 import com.ai.master.common.result.Result;
+import com.ai.master.common.util.PageResult;
 import lombok.RequiredArgsConstructor;
-import org.apache.dubbo.config.annotation.DubboService;
+import org.springframework.stereotype.Service;
 import org.springframework.beans.BeanUtils;
 
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
  * 申诉服务实现
  * 基于申诉详设文档的业务能力实现
  */
-@DubboService
+@Service
 @RequiredArgsConstructor
 public class AppealServiceImpl implements AppealService {
 
@@ -239,7 +240,7 @@ public class AppealServiceImpl implements AppealService {
         try {
             AuditAppealCommand command = new AuditAppealCommand();
             command.setAppealId(request.getAppealId());
-            command.setPassed(request.getPassed());
+            command.setPassed(request.isPassed());
             command.setAuditOpinion(request.getAuditOpinion());
             
             if (request.getItemAudits() != null) {
@@ -247,7 +248,7 @@ public class AppealServiceImpl implements AppealService {
                     .map(audit -> {
                         AuditAppealCommand.AppealItemAuditCommand itemAudit = new AuditAppealCommand.AppealItemAuditCommand();
                         itemAudit.setItemId(audit.getItemId());
-                        itemAudit.setPassed(audit.getPassed());
+                        itemAudit.setPassed(audit.isPassed());
                         itemAudit.setOpinion(audit.getOpinion());
                         return itemAudit;
                     })

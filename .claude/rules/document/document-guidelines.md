@@ -1,13 +1,3 @@
----
-description: 
-globs: 
-alwaysApply: true
----
----
-description:文档规范
-globs:["'*.java","*.md"]
-alwaysApply:true
----
 # 文档规范
 
 ## 代码文档规范

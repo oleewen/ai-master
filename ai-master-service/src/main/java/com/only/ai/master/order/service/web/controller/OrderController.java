@@ -34,8 +34,8 @@ public class OrderController {
     public OrderBuyResponse buy(@Valid @RequestBody OrderBuyRequest buyRequest, BindingResult bindingResult) {
         /** 处理参数验证错误 */
         if (bindingResult.hasErrors()) {
-            // TODO
-            return OrderBuyResponse.empty();
+            String message = bindingResult.getAllErrors().get(0).getDefaultMessage();
+            return OrderBuyResponse.fail("PARAM_ERROR", message);
         }
 
         /** 请求转命令 */

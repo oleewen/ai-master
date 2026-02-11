@@ -6,9 +6,7 @@ import com.only.ai.master.order.application.result.OrderBuyResult;
 
 public class OrderResultFactory {
     public static OrderBuyResponse asResponse(OrderBuyResult buyResult) {
-        OrderBuyResponse response = OrderBuyResponse.success();
         OrderBuyDTO buyDTO = OrderBuyDTOFactory.INSTANCE.toDTO(buyResult);
-        response.setModule(buyDTO);
-        return response;
+        return OrderBuyResponse.success(buyDTO);
     }
 }

@@ -15,4 +15,19 @@ public class OrderBuyResponse extends Result<OrderBuyDTO> {
     public static OrderBuyResponse success() {
         return new OrderBuyResponse();
     }
+
+    public static OrderBuyResponse success(OrderBuyDTO module) {
+        OrderBuyResponse response = new OrderBuyResponse();
+        response.setModule(module);
+        response.setSuccess(true);
+        return response;
+    }
+
+    public static OrderBuyResponse fail(String code, String message) {
+        OrderBuyResponse response = new OrderBuyResponse();
+        response.setSuccess(false);
+        response.setStatusCode(code);
+        response.setMessage(message);
+        return response;
+    }
 }

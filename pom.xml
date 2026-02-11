@@ -16,7 +16,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <start-class>com.only.ai.master.ApplicationStarter</start-class>
+        <start-class>com.only.ai.master.boot.ApplicationStarter</start-class>
         <project.encoding>UTF-8</project.encoding>
         <java.version>17</java.version>
         <revision>1.0.0-SNAPSHOT</revision>
@@ -143,11 +143,6 @@
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
                 <version>1.5.0.Final</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-webmvc</artifactId>
-                <version>5.1.5.RELEASE</version>
             </dependency>
             <!-- alibaba -->
             <dependency>

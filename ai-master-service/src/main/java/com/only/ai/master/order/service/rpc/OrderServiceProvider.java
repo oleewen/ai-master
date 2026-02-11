@@ -24,7 +24,7 @@ public class OrderServiceProvider implements OrderService {
     public OrderBuyResponse buy(OrderBuyRequest buyRequest) {
         /** 处理参数验证错误 */
         if (buyRequest.validator()) {
-            return OrderBuyResponse.empty();
+            return OrderBuyResponse.fail("PARAM_ERROR", "参数验证失败");
         }
 
         /** 请求转命令 */

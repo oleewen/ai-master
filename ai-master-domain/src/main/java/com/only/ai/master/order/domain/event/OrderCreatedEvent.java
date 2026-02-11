@@ -1,0 +1,10 @@
+package com.only.ai.master.order.domain.event;
+
+/**
+ * 订单下单事件
+ *
+ * @author only
+ * @since 2020-05-22
+ */
+public class OrderCreatedEvent extends com.only.ai.master.order.domain.event.OrderEvent {
+}

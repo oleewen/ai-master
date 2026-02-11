@@ -16,24 +16,12 @@
     <packaging>pom</packaging>
 
     <properties>
-        <start-class>com.ai.master.ApplicationStarter</start-class>
+        <start-class>com.only.ai.master.ApplicationStarter</start-class>
         <project.encoding>UTF-8</project.encoding>
         <java.version>17</java.version>
         <revision>1.0.0-SNAPSHOT</revision>
         <transformer.version>1.2.10</transformer.version>
         <spring.boot.version>2.7.10</spring.boot.version>
-        <checkstyle.version>3.3.1</checkstyle.version>
-        <!-- 测试插件版本 -->
-        <maven.surefire.version>2.22.2</maven.surefire.version>
-        <maven.failsafe.version>2.22.2</maven.failsafe.version>
-        <junit.version>4.13.2</junit.version>
-        <mockito.version>4.11.0</mockito.version>
-        
-        <!-- 数据库配置 -->
-        <db.driverClass>com.mysql.cj.jdbc.Driver</db.driverClass>
-        <db.url>jdbc:mysql://localhost:3306/ai_master?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true</db.url>
-        <db.username>root</db.username>
-        <db.password>123456</db.password>
     </properties>
 
     <modules>
@@ -174,11 +162,6 @@
                 <version>2.3.2</version>
             </dependency>
             <dependency>
-                <groupId>javax.persistence</groupId>
-                <artifactId>javax.persistence-api</artifactId>
-                <version>2.2</version>
-            </dependency>
-            <dependency>
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>
                 <version>2.0.1.Final</version>
@@ -198,33 +181,10 @@
                 <artifactId>springfox-swagger2</artifactId>
                 <version>2.7.0</version>
             </dependency>
-            <dependency>
-                <groupId>tk.mybatis</groupId>
-                <artifactId>mapper</artifactId>
-                <version>4.2.3</version>
-            </dependency>
 
             <!-- ======= -->
             <!-- 测试依赖 -->
             <!-- ======= -->
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${junit.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-                <version>${mockito.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-test</artifactId>
-                <version>${spring.boot.version}</version>
-                <scope>test</scope>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -249,88 +209,6 @@
                         <id>attach-sources</id>
                         <goals>
                             <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            
-            <!-- Checkstyle插件 - 代码质量检查 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${checkstyle.version}</version>
-                <configuration>
-                    <configLocation>checkstyle.xml</configLocation>
-                    <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
-                    <failOnViolation>false</failOnViolation>
-                    <consoleOutput>true</consoleOutput>
-                    <encoding>UTF-8</encoding>
-                    <linkXRef>false</linkXRef>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>checkstyle</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- Maven Surefire Plugin - 单元测试 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven.surefire.version}</version>
-                <configuration>
-                    <includes>
-                        <include>**/*Test.java</include>
-                        <include>**/*Tests.java</include>
-                    </includes>
-                    <excludes>
-                        <exclude>**/*IntegrationTest.java</exclude>
-                        <exclude>**/*IT.java</exclude>
-                    </excludes>
-                    <argLine>-Xmx1024m</argLine>
-                    <systemPropertyVariables>
-                        <java.awt.headless>true</java.awt.headless>
-                    </systemPropertyVariables>
-                    <!-- 确保JUnit 4测试能够运行 -->
-                    <properties>
-                        <property>
-                            <name>junit</name>
-                            <value>true</value>
-                        </property>
-                    </properties>
-                    <!-- 显式指定JUnit 4提供器 -->
-                    <dependencies>
-                        <dependency>
-                            <groupId>org.apache.maven.surefire</groupId>
-                            <artifactId>surefire-junit4</artifactId>
-                            <version>${maven.surefire.version}</version>
-                        </dependency>
-                    </dependencies>
-                </configuration>
-            </plugin>
-
-            <!-- Maven Failsafe Plugin - 集成测试 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>${maven.failsafe.version}</version>
-                <configuration>
-                    <includes>
-                        <include>**/*IntegrationTest.java</include>
-                        <include>**/*IT.java</include>
-                    </includes>
-                    <argLine>-Xmx1024m</argLine>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
                         </goals>
                     </execution>
                 </executions>

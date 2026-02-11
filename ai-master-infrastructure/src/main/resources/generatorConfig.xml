@@ -15,7 +15,7 @@
 
         <plugin type="org.mybatis.generator.plugins.MapperConfigPlugin">
             <property name="fileName" value="mapper-config.xml"/>
-            <property name="targetPackage" value="com.ai.master.base.mapper"/>
+            <property name="targetPackage" value="com.only.ai.master.base.mapper"/>
             <property name="targetProject"
                       value="MAVEN"/>
         </plugin>
@@ -31,10 +31,8 @@
         </commentGenerator>
 
         <!-- jdbc连接 -->
-        <jdbcConnection driverClass="${db.driverClass}"
-                        connectionURL="${db.url}" userId="${db.username}" password="${db.password}">
-            <property name="nullCatalogMeansCurrent" value="true"/>
-        </jdbcConnection>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://10.95.117.12:3306/core" userId="root" password="123456"/>
         <!-- 类型转换 -->
         <javaTypeResolver>
             <!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
@@ -42,7 +40,7 @@
         </javaTypeResolver>
 
         <!-- 生成实体类地址 -->
-        <javaModelGenerator targetPackage="com.ai.master.base.entity"
+        <javaModelGenerator targetPackage="com.only.ai.master.base.entity"
                             targetProject="MAVEN">
             <!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
             <property name="enableSubPackages" value="true"/>
@@ -51,14 +49,14 @@
         </javaModelGenerator>
 
         <!-- 生成mapxml文件 -->
-        <sqlMapGenerator targetPackage="com.ai.master.base.mapper.xml"
+        <sqlMapGenerator targetPackage="com.only.ai.master.base.mapper.xml"
                          targetProject="MAVEN">
             <!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!-- 生成mapxml对应client，也就是接口dao -->
-        <javaClientGenerator targetPackage="com.ai.master.base.mapper"
+        <javaClientGenerator targetPackage="com.only.ai.master.base.mapper"
                              targetProject="MAVEN" type="XMLMAPPER">
             <!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->
             <property name="enableSubPackages" value="true"/>
